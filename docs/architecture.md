@@ -101,3 +101,34 @@ dziedziczy po `RoomDatabase` — moduły zależne muszą widzieć ten typ na cla
 `app/navigation/CoachNavHost.kt` — jeden `NavHost`, dolna nawigacja z 4 zakładkami
 (Home/Rozmowy/Nauka/Statystyki, zgodnie z `docs/00-brief-decyzje-projektowe.md`),
 Ustawienia dostępne z górnego paska Home. Wszystkie trasy w obiekcie `Routes`.
+
+## Material 3 — decyzja o wersji (Expressive)
+
+"Najnowszy Material Design" to obecnie **Material 3 Expressive** (Google I/O 2025).
+Sprawdziliśmy realny stan API (lipiec 2026, `developer.android.com`) przed przyjęciem
+zależności:
+
+- `MaterialExpressiveTheme`, `expressiveLightColorScheme`/`expressiveDarkColorScheme`,
+  stabilny `MotionScheme` oraz rozszerzona skala kształtów (`MaterialShapes`,
+  `extraSmallIncreased` itd.) istnieją wyłącznie w linii **material3 1.5.0-alphaNN**.
+  Najnowszy w pełni **stabilny** release to **1.4.0** (Compose BOM `2026.06.01`,
+  `compose-ui`/`compose-foundation` 1.11.0).
+- Decyzja: **nie** dodajemy zależności alpha do produkcyjnego kodu. Zamiast tego
+  przyjmujemy ducha M3 Expressive w ramach stabilnego API:
+  - **Pełny, stabilny zestaw ról `ColorScheme`** (`primaryFixed`/`*FixedDim`,
+    `surfaceContainer*`, `inverseSurface`/`inverseOnSurface`/`inversePrimary`,
+    `outlineVariant`, `scrim`) — te role są częścią stabilnego konstruktora
+    `lightColorScheme()`/`darkColorScheme()` od dawna, nie są zależne od
+    Expressive-alpha. Patrz `core/designsystem/theme/Color.kt`.
+  - **Bardziej "miękka"/ekspresyjna skala zaokrągleń** w ramach wciąż-stabilnego,
+    5-tokenowego `Shapes` (8/12/16/20/32dp) — patrz `core/designsystem/theme/Shape.kt`.
+  - **Fizyka sprężynowa** (`spring()`, stabilne API) na przejściach stanu
+    `MicButton` zamiast `tween()` tam, gdzie to możliwe — `infiniteRepeatable`
+    (ciągła pulsacja halo) wymaga `DurationBasedAnimationSpec` i pozostaje na
+    `tween`, ale przejścia stanu (idle→listening itd.) mają teraz sprężynowe
+    "odbicie" (`Animatable` + `spring(DampingRatioMediumBouncy)`).
+- Roadmapa: `MaterialExpressiveTheme`/`MotionScheme`/`MaterialShapes` do przyjęcia
+  gdy material3 1.5.0 osiągnie stabilny release (patrz `docs/roadmap.md`).
+- To samo dotyczy pliku Figma: kolekcje `Color/Light` i `Color/Dark` mają pełny
+  komplet ról 1:1 z `Color.kt`, a kolekcja `Radius` używa tej samej skali
+  8/12/16/20/32.

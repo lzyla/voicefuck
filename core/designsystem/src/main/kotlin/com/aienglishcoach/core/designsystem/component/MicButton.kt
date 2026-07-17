@@ -1,9 +1,12 @@
 package com.aienglishcoach.core.designsystem.component
 
 import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -19,7 +22,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
@@ -58,8 +63,29 @@ fun MicButton(
             MicState.Processing -> MaterialTheme.colorScheme.surfaceVariant
             MicState.Speaking -> MaterialTheme.colorScheme.secondary
         },
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessMedium,
+        ),
         label = "mic-color",
     )
+
+    // A brief spring "pop" on every state change (physics-based motion, e.g.
+    // idle -> listening): snap slightly oversized, then spring back to rest.
+    // The continuous halo pulse above stays tween-based since
+    // infiniteRepeatable requires a DurationBasedAnimationSpec and cannot use
+    // spring() directly.
+    val statePop = remember { Animatable(1f) }
+    LaunchedEffect(state) {
+        statePop.snapTo(1.12f)
+        statePop.animateTo(
+            targetValue = 1f,
+            animationSpec = spring(
+                dampingRatio = Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessMedium,
+            ),
+        )
+    }
 
     Box(modifier = modifier.size(96.dp), contentAlignment = Alignment.Center) {
         // Halo behind the button; grows with voice level while listening.
@@ -74,6 +100,7 @@ fun MicButton(
             enabled = enabled,
             modifier = Modifier
                 .size(72.dp)
+                .scale(statePop.value)
                 .background(containerColor, CircleShape),
         ) {
             Icon(

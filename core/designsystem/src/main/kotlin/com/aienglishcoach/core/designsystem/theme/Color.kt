@@ -10,6 +10,13 @@ import androidx.compose.ui.graphics.Color
  * secondary #14B8A6 (teal)    – progress, success accents
  * tertiary  #F59E0B (amber)   – streaks, highlights
  * error     #DC2626
+ *
+ * Full stable Material 3 ColorScheme role set (lightColorScheme/darkColorScheme
+ * already expose these on the current stable material3 1.4.0 — they are not
+ * gated behind the still-alpha "Material 3 Expressive" theme APIs, see
+ * docs/architecture.md for the adoption decision). "Fixed" roles are
+ * deliberately theme-invariant per the M3 spec, so they are defined once and
+ * reused by both LightColorScheme and DarkColorScheme.
  */
 
 // Light
@@ -36,6 +43,17 @@ private val OnSurfaceLight = Color(0xFF1B1B23)
 private val SurfaceVariantLight = Color(0xFFE7E7F2)
 private val OnSurfaceVariantLight = Color(0xFF474753)
 private val OutlineLight = Color(0xFF787885)
+private val OutlineVariantLight = Color(0xFFC7C7D6)
+private val SurfaceDimLight = Color(0xFFDAD9E0)
+private val SurfaceBrightLight = Color(0xFFFFFFFF)
+private val SurfaceContainerLowestLight = Color(0xFFFFFFFF)
+private val SurfaceContainerLowLight = Color(0xFFF5F3FA)
+private val SurfaceContainerLight = Color(0xFFEFEDF6)
+private val SurfaceContainerHighLight = Color(0xFFE9E7F0)
+private val SurfaceContainerHighestLight = Color(0xFFE3E1EA)
+private val InverseSurfaceLight = Color(0xFF2F2F38)
+private val InverseOnSurfaceLight = Color(0xFFF1F0F7)
+private val InversePrimaryLight = Color(0xFFBAC2FF)
 
 // Dark
 private val PrimaryDark = Color(0xFFA5B4FC)
@@ -61,20 +79,58 @@ private val OnSurfaceDark = Color(0xFFE4E4EC)
 private val SurfaceVariantDark = Color(0xFF303040)
 private val OnSurfaceVariantDark = Color(0xFFC5C5D2)
 private val OutlineDark = Color(0xFF8F8F9E)
+private val OutlineVariantDark = Color(0xFF47454F)
+private val SurfaceDimDark = Color(0xFF121218)
+private val SurfaceBrightDark = Color(0xFF38373F)
+private val SurfaceContainerLowestDark = Color(0xFF0D0D12)
+private val SurfaceContainerLowDark = Color(0xFF1A1920)
+private val SurfaceContainerDark = Color(0xFF1E1D25)
+private val SurfaceContainerHighDark = Color(0xFF29282F)
+private val SurfaceContainerHighestDark = Color(0xFF34333B)
+private val InverseSurfaceDark = Color(0xFFE3E1EA)
+private val InverseOnSurfaceDark = Color(0xFF2F2F38)
+private val InversePrimaryDark = Color(0xFF4F46E5)
+
+// Fixed roles: theme-invariant by design (M3 spec) — shared by both schemes.
+private val PrimaryFixed = Color(0xFFE0E7FF)
+private val PrimaryFixedDim = Color(0xFFC7D2FE)
+private val OnPrimaryFixed = Color(0xFF1E1B4B)
+private val OnPrimaryFixedVariant = Color(0xFF4338CA)
+private val SecondaryFixed = Color(0xFFCCFBF1)
+private val SecondaryFixedDim = Color(0xFF7DD3C0)
+private val OnSecondaryFixed = Color(0xFF134E4A)
+private val OnSecondaryFixedVariant = Color(0xFF0F766E)
+private val TertiaryFixed = Color(0xFFFEF3C7)
+private val TertiaryFixedDim = Color(0xFFFCD34D)
+private val OnTertiaryFixed = Color(0xFF78350F)
+private val OnTertiaryFixedVariant = Color(0xFFB45309)
+private val Scrim = Color(0xFF000000)
 
 val LightColorScheme = lightColorScheme(
     primary = PrimaryLight,
     onPrimary = OnPrimaryLight,
     primaryContainer = PrimaryContainerLight,
     onPrimaryContainer = OnPrimaryContainerLight,
+    primaryFixed = PrimaryFixed,
+    primaryFixedDim = PrimaryFixedDim,
+    onPrimaryFixed = OnPrimaryFixed,
+    onPrimaryFixedVariant = OnPrimaryFixedVariant,
     secondary = SecondaryLight,
     onSecondary = OnSecondaryLight,
     secondaryContainer = SecondaryContainerLight,
     onSecondaryContainer = OnSecondaryContainerLight,
+    secondaryFixed = SecondaryFixed,
+    secondaryFixedDim = SecondaryFixedDim,
+    onSecondaryFixed = OnSecondaryFixed,
+    onSecondaryFixedVariant = OnSecondaryFixedVariant,
     tertiary = TertiaryLight,
     onTertiary = OnTertiaryLight,
     tertiaryContainer = TertiaryContainerLight,
     onTertiaryContainer = OnTertiaryContainerLight,
+    tertiaryFixed = TertiaryFixed,
+    tertiaryFixedDim = TertiaryFixedDim,
+    onTertiaryFixed = OnTertiaryFixed,
+    onTertiaryFixedVariant = OnTertiaryFixedVariant,
     error = ErrorLight,
     onError = OnErrorLight,
     errorContainer = ErrorContainerLight,
@@ -85,7 +141,19 @@ val LightColorScheme = lightColorScheme(
     onSurface = OnSurfaceLight,
     surfaceVariant = SurfaceVariantLight,
     onSurfaceVariant = OnSurfaceVariantLight,
+    surfaceDim = SurfaceDimLight,
+    surfaceBright = SurfaceBrightLight,
+    surfaceContainerLowest = SurfaceContainerLowestLight,
+    surfaceContainerLow = SurfaceContainerLowLight,
+    surfaceContainer = SurfaceContainerLight,
+    surfaceContainerHigh = SurfaceContainerHighLight,
+    surfaceContainerHighest = SurfaceContainerHighestLight,
+    inverseSurface = InverseSurfaceLight,
+    inverseOnSurface = InverseOnSurfaceLight,
+    inversePrimary = InversePrimaryLight,
     outline = OutlineLight,
+    outlineVariant = OutlineVariantLight,
+    scrim = Scrim,
 )
 
 val DarkColorScheme = darkColorScheme(
@@ -93,14 +161,26 @@ val DarkColorScheme = darkColorScheme(
     onPrimary = OnPrimaryDark,
     primaryContainer = PrimaryContainerDark,
     onPrimaryContainer = OnPrimaryContainerDark,
+    primaryFixed = PrimaryFixed,
+    primaryFixedDim = PrimaryFixedDim,
+    onPrimaryFixed = OnPrimaryFixed,
+    onPrimaryFixedVariant = OnPrimaryFixedVariant,
     secondary = SecondaryDark,
     onSecondary = OnSecondaryDark,
     secondaryContainer = SecondaryContainerDark,
     onSecondaryContainer = OnSecondaryContainerDark,
+    secondaryFixed = SecondaryFixed,
+    secondaryFixedDim = SecondaryFixedDim,
+    onSecondaryFixed = OnSecondaryFixed,
+    onSecondaryFixedVariant = OnSecondaryFixedVariant,
     tertiary = TertiaryDark,
     onTertiary = OnTertiaryDark,
     tertiaryContainer = TertiaryContainerDark,
     onTertiaryContainer = OnTertiaryContainerDark,
+    tertiaryFixed = TertiaryFixed,
+    tertiaryFixedDim = TertiaryFixedDim,
+    onTertiaryFixed = OnTertiaryFixed,
+    onTertiaryFixedVariant = OnTertiaryFixedVariant,
     error = ErrorDark,
     onError = OnErrorDark,
     errorContainer = ErrorContainerDark,
@@ -111,5 +191,17 @@ val DarkColorScheme = darkColorScheme(
     onSurface = OnSurfaceDark,
     surfaceVariant = SurfaceVariantDark,
     onSurfaceVariant = OnSurfaceVariantDark,
+    surfaceDim = SurfaceDimDark,
+    surfaceBright = SurfaceBrightDark,
+    surfaceContainerLowest = SurfaceContainerLowestDark,
+    surfaceContainerLow = SurfaceContainerLowDark,
+    surfaceContainer = SurfaceContainerDark,
+    surfaceContainerHigh = SurfaceContainerHighDark,
+    surfaceContainerHighest = SurfaceContainerHighestDark,
+    inverseSurface = InverseSurfaceDark,
+    inverseOnSurface = InverseOnSurfaceDark,
+    inversePrimary = InversePrimaryDark,
     outline = OutlineDark,
+    outlineVariant = OutlineVariantDark,
+    scrim = Scrim,
 )

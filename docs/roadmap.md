@@ -8,6 +8,14 @@ fiszki, statystyki + wymowa + notatki głosowe + WorkManager.
 
 ## S6 i dalej (nie zaimplementowane w tym repo)
 
+- **Material 3 Expressive (pełne przyjęcie)** — `MaterialExpressiveTheme`,
+  `expressiveLightColorScheme`/`expressiveDarkColorScheme`, stabilny `MotionScheme`
+  i rozszerzona skala kształtów (`MaterialShapes`) istnieją na razie tylko w
+  alpha (material3 1.5.0-alphaNN, stan na lipiec 2026). Obecnie przyjęte są
+  stabilne elementy tego ducha (pełny zestaw ról `ColorScheme`, "miększa" skala
+  promieni, fizyka sprężynowa na przejściach `MicButton`) — patrz
+  `docs/architecture.md`. Migracja na właściwe API Expressive po stabilizacji
+  1.5.0.
 - **Synchronizacja chmurowa** — konta użytkowników, backend synchronizujący
   Room ↔ chmura, rozwiązywanie konfliktów offline-first (patrz szkic w
   `docs/15-api.md`). Na tym etapie jedyna trwałość danych to lokalna baza Room.
