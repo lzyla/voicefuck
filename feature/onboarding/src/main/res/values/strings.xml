@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_welcome_title">AI English Coach</string>
+    <string name="onboarding_welcome_description">Rozmawiaj po angielsku każdego dnia z tutorem AI, który Cię zna, poprawia Twoje błędy i pilnuje postępów.</string>
+    <string name="onboarding_start">Zaczynamy</string>
+    <string name="onboarding_next">Dalej</string>
+    <string name="onboarding_skip">Pomiń na razie</string>
+    <string name="onboarding_finish">Zakończ konfigurację</string>
+
+    <string name="onboarding_level_title">Jaki jest Twój poziom angielskiego?</string>
+    <string name="onboarding_level_description">Tutor dopasuje słownictwo i tempo rozmowy do Twojego poziomu. Możesz to później zmienić w ustawieniach.</string>
+
+    <string name="onboarding_goals_title">Po co uczysz się angielskiego?</string>
+    <string name="onboarding_goals_description">Wybierz swoje cele — rozmowy będą krążyć wokół tego, co dla Ciebie ważne.</string>
+    <string name="onboarding_daily_goal">Dzienny cel rozmowy</string>
+    <string name="onboarding_minutes">%1$d min</string>
+
+    <string name="goal_work">Praca</string>
+    <string name="goal_travel">Podróże</string>
+    <string name="goal_emigration">Emigracja</string>
+    <string name="goal_exams">Egzaminy</string>
+    <string name="goal_fluency">Płynność</string>
+    <string name="goal_social">Znajomości</string>
+
+    <string name="onboarding_permissions_title">Dostęp do mikrofonu</string>
+    <string name="onboarding_permissions_description">To aplikacja głosowa — mikrofon jest potrzebny, żeby rozmawiać z tutorem i ćwiczyć wymowę. Audio przetwarzamy tylko na potrzeby rozpoznawania mowy.</string>
+    <string name="onboarding_grant_microphone">Zezwól na mikrofon</string>
+
+    <string name="onboarding_api_title">Klucz API</string>
+    <string name="onboarding_api_description">Aplikacja korzysta z modeli OpenAI. Wklej swój klucz API — będzie przechowywany wyłącznie na tym urządzeniu, w zaszyfrowanym magazynie.</string>
+    <string name="onboarding_api_label">Klucz OpenAI API</string>
+    <string name="onboarding_api_error">Klucz wygląda na nieprawidłowy</string>
+</resources>

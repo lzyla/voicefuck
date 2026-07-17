@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title">AI English Coach</string>
+    <string name="home_settings">Ustawienia</string>
+    <string name="home_streak">dni z rzędu</string>
+    <string name="home_due_exercises">ćwiczenia</string>
+    <string name="home_due_words">słówka</string>
+    <string name="home_progress">%1$d/%2$d min</string>
+    <string name="home_goal_reached">Cel dzienny osiągnięty — świetna robota!</string>
+    <string name="home_goal_encouragement">Krótka rozmowa dziś = pewność siebie jutro.</string>
+    <string name="home_start_conversation">Rozpocznij rozmowę</string>
+    <string name="home_exercises_prompt">Masz %1$d ćwiczeń do powtórki</string>
+    <string name="home_vocabulary_prompt">Masz %1$d słówek do powtórki</string>
+</resources>
