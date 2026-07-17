@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile_title">Profil</string>
+    <string name="profile_settings">Ustawienia</string>
+    <string name="profile_level_badge">Poziom %1$s</string>
+    <string name="profile_streak_label">dni z rzędu</string>
+    <string name="profile_go_pro_title">Przejdź na Pro</string>
+    <string name="profile_go_pro_subtitle">Odblokuj wszystkie scenariusze i lekcje</string>
+    <string name="profile_progress_row">Zobacz szczegółowe statystyki</string>
+    <string name="profile_achievements_title">Odznaki</string>
+    <string name="profile_achievement_first_step">Pierwszy krok</string>
+    <string name="profile_achievement_three_days">3 dni z rzędu</string>
+    <string name="profile_achievement_one_week">Tydzień nauki</string>
+    <string name="profile_achievement_one_month">Miesiąc nauki</string>
+
+    <string name="paywall_close">Zamknij</string>
+    <string name="paywall_title">AI English Coach Pro</string>
+    <string name="paywall_subtitle">Pełny dostęp do wszystkich funkcji nauki</string>
+    <string name="paywall_feature_unlimited_conversations">Nielimitowane rozmowy głosowe</string>
+    <string name="paywall_feature_advanced_scenarios">Zaawansowane scenariusze rozmów</string>
+    <string name="paywall_feature_detailed_feedback">Szczegółowa analiza błędów</string>
+    <string name="paywall_feature_offline_lessons">Lekcje dostępne offline</string>
+    <string name="paywall_cta">Wypróbuj Pro</string>
+    <string name="paywall_dismiss">Może później</string>
+</resources>

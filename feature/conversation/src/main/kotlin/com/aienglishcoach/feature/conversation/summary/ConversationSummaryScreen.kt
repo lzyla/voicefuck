@@ -1,6 +1,7 @@
 package com.aienglishcoach.feature.conversation.summary
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -14,21 +15,25 @@ import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.aienglishcoach.core.designsystem.component.CoachCard
-import com.aienglishcoach.core.designsystem.component.CoachPrimaryButton
-import com.aienglishcoach.core.designsystem.component.ErrorBanner
-import com.aienglishcoach.core.designsystem.theme.Spacing
+import com.aienglishcoach.core.designsystem.glass.AuroraBackground
+import com.aienglishcoach.core.designsystem.glass.GlassPanel
+import com.aienglishcoach.core.designsystem.glass.GlassPrimaryButton
+import com.aienglishcoach.core.designsystem.glass.GlassTokens
 import com.aienglishcoach.core.domain.model.ErrorCategory
 import com.aienglishcoach.core.domain.model.UserError
 import com.aienglishcoach.feature.conversation.R
@@ -43,94 +48,112 @@ fun ConversationSummaryScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = { Text(stringResource(R.string.summary_title)) },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                            contentDescription = stringResource(R.string.conversation_back),
-                        )
-                    }
-                },
-            )
-        },
-    ) { padding ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(padding),
-            contentPadding = PaddingValues(Spacing.md),
-            verticalArrangement = Arrangement.spacedBy(Spacing.md),
-        ) {
-            if (uiState.isAnalyzing) {
-                item {
-                    Row(
-                        modifier = Modifier.fillMaxWidth().padding(Spacing.md),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        CircularProgressIndicator()
-                        Text(
-                            text = stringResource(R.string.summary_analyzing),
-                            style = MaterialTheme.typography.bodyMedium,
-                            modifier = Modifier.padding(start = Spacing.md),
-                        )
-                    }
-                }
-            }
-
-            uiState.analysisError?.let { error ->
-                item {
-                    ErrorBanner(
-                        message = errorMessage(error),
-                        actionLabel = stringResource(R.string.summary_retry),
-                        onAction = viewModel::retryAnalysis,
-                    )
-                }
-            }
-
-            uiState.summary?.let { summary ->
-                item {
-                    CoachCard {
-                        Column(modifier = Modifier.padding(Spacing.md)) {
-                            Text(
-                                text = stringResource(R.string.summary_feedback_header),
-                                style = MaterialTheme.typography.titleMedium,
+    Box(modifier = Modifier.fillMaxSize()) {
+        AuroraBackground()
+        Scaffold(
+            containerColor = Color.Transparent,
+            topBar = {
+                TopAppBar(
+                    title = { Text(stringResource(R.string.summary_title), color = GlassTokens.TextPrimary) },
+                    navigationIcon = {
+                        IconButton(onClick = onBack) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                                contentDescription = stringResource(R.string.conversation_back),
+                                tint = GlassTokens.TextPrimary,
                             )
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
+                )
+            },
+        ) { padding ->
+            LazyColumn(
+                modifier = Modifier.fillMaxSize().padding(padding),
+                contentPadding = PaddingValues(GlassTokens.ScreenSidePadding),
+                verticalArrangement = Arrangement.spacedBy(GlassTokens.CardGap),
+            ) {
+                if (uiState.isAnalyzing) {
+                    item {
+                        Row(
+                            modifier = Modifier.fillMaxWidth().padding(16.dp),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            CircularProgressIndicator(color = GlassTokens.Accent)
                             Text(
-                                text = summary,
-                                style = MaterialTheme.typography.bodyMedium,
-                                modifier = Modifier.padding(top = Spacing.xs),
+                                text = stringResource(R.string.summary_analyzing),
+                                color = GlassTokens.TextSecondary,
+                                fontSize = 14.sp,
+                                modifier = Modifier.padding(start = 16.dp),
                             )
                         }
                     }
                 }
-            }
 
-            if (uiState.errors.isNotEmpty()) {
-                item {
-                    Text(
-                        text = stringResource(R.string.summary_errors_header, uiState.errors.size),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
+                uiState.analysisError?.let { error ->
+                    item {
+                        GlassPanel(modifier = Modifier.fillMaxWidth(), fill = GlassTokens.Destructive) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(errorMessage(error), color = GlassTokens.TextPrimary, fontSize = 14.sp)
+                                GlassPrimaryButton(
+                                    text = stringResource(R.string.summary_retry),
+                                    onClick = viewModel::retryAnalysis,
+                                    modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
+                                )
+                            }
+                        }
+                    }
                 }
-                items(uiState.errors, key = { it.id }) { error ->
-                    ErrorCard(error)
+
+                uiState.summary?.let { summary ->
+                    item {
+                        GlassPanel(modifier = Modifier.fillMaxWidth()) {
+                            Column(modifier = Modifier.padding(16.dp)) {
+                                Text(
+                                    text = stringResource(R.string.summary_feedback_header),
+                                    color = GlassTokens.TextPrimary,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp,
+                                )
+                                Text(
+                                    text = summary,
+                                    color = GlassTokens.TextSecondary,
+                                    fontSize = 14.sp,
+                                    modifier = Modifier.padding(top = 6.dp),
+                                )
+                            }
+                        }
+                    }
                 }
-                item {
-                    CoachPrimaryButton(
-                        text = stringResource(R.string.summary_go_practice),
-                        onClick = onGoToExercises,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
-            } else if (uiState.isAnalyzed) {
-                item {
-                    Text(
-                        text = stringResource(R.string.summary_no_errors),
-                        style = MaterialTheme.typography.bodyLarge,
-                    )
+
+                if (uiState.errors.isNotEmpty()) {
+                    item {
+                        Text(
+                            text = stringResource(R.string.summary_errors_header, uiState.errors.size),
+                            color = GlassTokens.TextPrimary,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp,
+                        )
+                    }
+                    items(uiState.errors, key = { it.id }) { error ->
+                        ErrorCard(error)
+                    }
+                    item {
+                        GlassPrimaryButton(
+                            text = stringResource(R.string.summary_go_practice),
+                            onClick = onGoToExercises,
+                            modifier = Modifier.fillMaxWidth(),
+                        )
+                    }
+                } else if (uiState.isAnalyzed) {
+                    item {
+                        Text(
+                            text = stringResource(R.string.summary_no_errors),
+                            color = GlassTokens.TextPrimary,
+                            fontSize = 15.sp,
+                        )
+                    }
                 }
             }
         }
@@ -139,29 +162,30 @@ fun ConversationSummaryScreen(
 
 @Composable
 private fun ErrorCard(error: UserError) {
-    CoachCard(modifier = Modifier.fillMaxWidth()) {
-        Column(modifier = Modifier.padding(Spacing.md)) {
+    GlassPanel(modifier = Modifier.fillMaxWidth()) {
+        Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = categoryLabel(error.category),
-                style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.primary,
+                color = GlassTokens.Accent,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 12.sp,
             )
             Text(
                 text = "„${error.original}”",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.error,
-                modifier = Modifier.padding(top = Spacing.xxs),
+                color = GlassTokens.TextPrimary,
+                fontSize = 14.sp,
+                modifier = Modifier.padding(top = 4.dp),
             )
             Text(
                 text = "→ ${error.corrected}",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.secondary,
+                color = GlassTokens.Success,
+                fontSize = 14.sp,
             )
             Text(
                 text = error.explanation,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.padding(top = Spacing.xxs),
+                color = GlassTokens.TextTertiary,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(top = 4.dp),
             )
         }
     }

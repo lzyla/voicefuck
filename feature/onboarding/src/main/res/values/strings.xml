@@ -10,6 +10,20 @@
     <string name="onboarding_level_title">Jaki jest Twój poziom angielskiego?</string>
     <string name="onboarding_level_description">Tutor dopasuje słownictwo i tempo rozmowy do Twojego poziomu. Możesz to później zmienić w ustawieniach.</string>
 
+    <string name="onboarding_signup_title">Utwórz konto</string>
+    <string name="onboarding_signup_description">Podaj imię, żeby tutor mógł się do Ciebie zwracać. To nie jest jeszcze prawdziwe konto z chmurą — na razie zostaje na tym urządzeniu.</string>
+    <string name="onboarding_signup_name_label">Twoje imię</string>
+    <string name="onboarding_signup_continue">Kontynuuj</string>
+
+    <string name="onboarding_placement_title">Krótki test poziomujący</string>
+    <string name="onboarding_placement_description">%1$d pytań — pomogą nam zgadnąć Twój poziom. Możesz pominąć test i wybrać poziom ręcznie.</string>
+    <string name="onboarding_placement_question_counter">Pytanie %1$d z %2$d</string>
+    <string name="onboarding_placement_see_result">Zobacz wynik</string>
+
+    <string name="onboarding_level_result_title">Twój poziom to %1$s</string>
+    <string name="onboarding_level_result_description">Na podstawie testu (%1$d/%2$d poprawnych odpowiedzi). Możesz zmienić poziom ręcznie, jeśli uważasz, że nie pasuje.</string>
+    <string name="onboarding_level_result_continue">Świetnie, przejdźmy dalej</string>
+
     <string name="onboarding_goals_title">Po co uczysz się angielskiego?</string>
     <string name="onboarding_goals_description">Wybierz swoje cele — rozmowy będą krążyć wokół tego, co dla Ciebie ważne.</string>
     <string name="onboarding_daily_goal">Dzienny cel rozmowy</string>

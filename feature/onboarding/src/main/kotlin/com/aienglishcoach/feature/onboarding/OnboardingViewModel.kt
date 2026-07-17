@@ -31,6 +31,30 @@ class OnboardingViewModel @Inject constructor(
         _uiState.update { it.copy(selectedLevel = level) }
     }
 
+    fun onDisplayNameChanged(value: String) {
+        _uiState.update { it.copy(displayName = value) }
+    }
+
+    fun answerPlacementQuestion(questionIndex: Int, optionIndex: Int) {
+        _uiState.update { state ->
+            state.copy(placementAnswers = state.placementAnswers + (questionIndex to optionIndex))
+        }
+    }
+
+    /** Scores the placement test and stores the resulting level. */
+    fun finishPlacementTest() {
+        val state = _uiState.value
+        val correctCount = PLACEMENT_QUESTIONS.indices.count { index ->
+            state.placementAnswers[index] == PLACEMENT_QUESTIONS[index].correctOptionIndex
+        }
+        _uiState.update {
+            it.copy(
+                placementCorrectCount = correctCount,
+                selectedLevel = englishLevelForScore(correctCount),
+            )
+        }
+    }
+
     fun toggleGoal(goal: LearningGoal) {
         _uiState.update { state ->
             val goals = if (goal in state.selectedGoals) {
@@ -75,6 +99,9 @@ class OnboardingViewModel @Inject constructor(
 }
 
 data class OnboardingUiState(
+    val displayName: String = "",
+    val placementAnswers: Map<Int, Int> = emptyMap(),
+    val placementCorrectCount: Int = 0,
     val selectedLevel: EnglishLevel = EnglishLevel.B1,
     val selectedGoals: Set<LearningGoal> = emptySet(),
     val dailyGoalMinutes: Int = 10,

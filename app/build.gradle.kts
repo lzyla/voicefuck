@@ -32,6 +32,9 @@ dependencies {
     implementation(projects.feature.practice)
     implementation(projects.feature.statistics)
     implementation(projects.feature.settings)
+    implementation(projects.feature.learningpath)
+    implementation(projects.feature.chat)
+    implementation(projects.feature.profile)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.core.splashscreen)

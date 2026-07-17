@@ -27,6 +27,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -47,6 +49,8 @@ import com.aienglishcoach.core.designsystem.component.LevelChip
 import com.aienglishcoach.core.designsystem.component.MessageBubble
 import com.aienglishcoach.core.designsystem.component.MicButton
 import com.aienglishcoach.core.designsystem.component.MicState
+import com.aienglishcoach.core.designsystem.glass.AuroraBackground
+import com.aienglishcoach.core.designsystem.glass.GlassTokens
 import com.aienglishcoach.core.designsystem.theme.Spacing
 import com.aienglishcoach.core.domain.model.ConversationScenario
 import com.aienglishcoach.core.domain.model.MessageRole
@@ -64,45 +68,55 @@ fun ConversationScreen(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var showEndDialog by remember { mutableStateOf(false) }
 
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(uiState.title.ifBlank { stringResource(R.string.conversation_title) })
-                },
-                navigationIcon = {
-                    IconButton(onClick = onBack) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                            contentDescription = stringResource(R.string.conversation_back),
+    Box(modifier = Modifier.fillMaxSize()) {
+        AuroraBackground()
+        Scaffold(
+            containerColor = Color.Transparent,
+            topBar = {
+                TopAppBar(
+                    title = {
+                        Text(
+                            uiState.title.ifBlank { stringResource(R.string.conversation_title) },
+                            color = GlassTokens.TextPrimary,
                         )
-                    }
-                },
-                actions = {
-                    if (uiState.phase == ConversationPhase.Active) {
-                        IconButton(onClick = { showEndDialog = true }) {
+                    },
+                    navigationIcon = {
+                        IconButton(onClick = onBack) {
                             Icon(
-                                imageVector = Icons.Rounded.StopCircle,
-                                contentDescription = stringResource(R.string.conversation_end),
+                                imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                                contentDescription = stringResource(R.string.conversation_back),
+                                tint = GlassTokens.TextPrimary,
                             )
                         }
-                    }
-                },
-            )
-        },
-    ) { padding ->
-        when (uiState.phase) {
-            ConversationPhase.ScenarioSelection -> ScenarioSelection(
-                onSelect = viewModel::selectScenario,
-                modifier = Modifier.padding(padding),
-            )
-            ConversationPhase.Active -> ActiveConversation(
-                uiState = uiState,
-                onMicTapped = viewModel::onMicTapped,
-                onTranslate = viewModel::onTranslateRequested,
-                onDismissError = viewModel::dismissError,
-                modifier = Modifier.padding(padding),
-            )
+                    },
+                    actions = {
+                        if (uiState.phase == ConversationPhase.Active) {
+                            IconButton(onClick = { showEndDialog = true }) {
+                                Icon(
+                                    imageVector = Icons.Rounded.StopCircle,
+                                    contentDescription = stringResource(R.string.conversation_end),
+                                    tint = GlassTokens.TextPrimary,
+                                )
+                            }
+                        }
+                    },
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent),
+                )
+            },
+        ) { padding ->
+            when (uiState.phase) {
+                ConversationPhase.ScenarioSelection -> ScenarioSelection(
+                    onSelect = viewModel::selectScenario,
+                    modifier = Modifier.padding(padding),
+                )
+                ConversationPhase.Active -> ActiveConversation(
+                    uiState = uiState,
+                    onMicTapped = viewModel::onMicTapped,
+                    onTranslate = viewModel::onTranslateRequested,
+                    onDismissError = viewModel::dismissError,
+                    modifier = Modifier.padding(padding),
+                )
+            }
         }
     }
 
@@ -143,6 +157,7 @@ private fun ScenarioSelection(
         Text(
             text = stringResource(R.string.conversation_pick_scenario),
             style = MaterialTheme.typography.headlineSmall,
+            color = GlassTokens.TextPrimary,
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(Spacing.lg))
@@ -213,7 +228,7 @@ private fun ActiveConversation(
             Text(
                 text = uiState.partialText,
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = GlassTokens.TextSecondary,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().padding(horizontal = Spacing.lg),
             )
@@ -254,7 +269,7 @@ private fun ActiveConversation(
                         },
                     ),
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    color = GlassTokens.TextSecondary,
                     modifier = Modifier.padding(top = Spacing.xs),
                 )
             }

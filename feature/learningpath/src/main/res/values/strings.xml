@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="path_title">Ścieżka nauki</string>
+    <string name="path_xp_label">XP</string>
+    <string name="path_xp_reward">+%1$d XP</string>
+
+    <string name="lesson_flashcard_reveal">Pokaż tłumaczenie</string>
+    <string name="lesson_flashcard_next">Dalej</string>
+    <string name="lesson_exercise_finish">Zakończ ćwiczenie</string>
+    <string name="lesson_complete_title">Lekcja ukończona!</string>
+    <string name="lesson_complete_summary">%1$d/%2$d poprawnych odpowiedzi · +%3$d XP</string>
+    <string name="lesson_complete_continue">Wróć do ścieżki</string>
+</resources>

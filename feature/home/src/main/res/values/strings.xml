@@ -2,6 +2,7 @@
 <resources>
     <string name="home_title">AI English Coach</string>
     <string name="home_settings">Ustawienia</string>
+    <string name="home_conversation_history">Historia rozmów</string>
     <string name="home_streak">dni z rzędu</string>
     <string name="home_due_exercises">ćwiczenia</string>
     <string name="home_due_words">słówka</string>

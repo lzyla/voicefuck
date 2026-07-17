@@ -39,6 +39,9 @@ feature/conversation/      rozmowa głosowa, historia, analiza po rozmowie
 feature/practice/          ćwiczenia, słownictwo (SRS), wymowa, notatki głosowe
 feature/statistics/        statystyki i wykresy
 feature/settings/          profil, głos AI, klucz API, wygląd, dane
+feature/learningpath/      ścieżka nauki: jednostki, lekcje, fiszki, ćwiczenia (statyczna treść)
+feature/chat/              czat tekstowy z tutorem (ten sam backend co rozmowa głosowa)
+feature/profile/           profil, odznaki, ekran "Go Pro"
 ```
 
 Zależności modułów są jednokierunkowe: `feature/*` → `core/domain` + `core/designsystem`
@@ -71,6 +74,7 @@ przechowywany wyłącznie lokalnie, w zaszyfrowanym magazynie (`EncryptedSharedP
 | Rozwój projektu (dodawanie modułu/ekranu) | [`docs/development.md`](docs/development.md) |
 | Roadmapa | [`docs/roadmap.md`](docs/roadmap.md) |
 | Pełna dokumentacja projektowa (etapy 1–17) | [`docs/`](docs/) — pliki `00`–`17` |
+| Redesign "Liquid Glass" (2026-07-17) — co realne, co makieta | [`docs/18-liquid-glass-redesign.md`](docs/18-liquid-glass-redesign.md) |
 
 ## Status
 
