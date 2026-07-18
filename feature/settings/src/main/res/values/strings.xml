@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Ustawienia</string>
+    <string name="settings_back">Wstecz</string>
+
+    <string name="settings_section_profile">Profil nauki</string>
+    <string name="settings_english_level">Poziom języka</string>
+    <string name="settings_learning_goals">Cele nauki</string>
+    <string name="settings_goal_work">Praca</string>
+    <string name="settings_goal_travel">Podróże</string>
+    <string name="settings_goal_emigration">Emigracja</string>
+    <string name="settings_goal_exams">Egzaminy</string>
+    <string name="settings_goal_fluency">Płynność</string>
+    <string name="settings_goal_social">Kontakty towarzyskie</string>
+    <string name="settings_daily_goal">Cel dzienny</string>
+    <string name="settings_minutes_chip">%1$d min</string>
+
+    <string name="settings_section_voice">Głos tutora</string>
+    <string name="settings_voice_us">Amerykański</string>
+    <string name="settings_voice_uk">Brytyjski</string>
+    <string name="settings_speech_rate">Tempo mowy</string>
+    <string name="settings_speech_rate_value">%1$.1f×</string>
+
+    <string name="settings_section_ai">AI</string>
+    <string name="settings_api_key_label">Klucz API</string>
+    <string name="settings_api_key_save">Zapisz klucz</string>
+    <string name="settings_api_key_saved">Zapisano</string>
+    <string name="settings_api_key_error">Klucz wygląda na nieprawidłowy</string>
+    <string name="settings_model_label">Model</string>
+    <string name="settings_model_fast">Szybki (gpt-4o-mini)</string>
+    <string name="settings_model_accurate">Dokładny (gpt-4o)</string>
+
+    <string name="settings_section_appearance">Wygląd</string>
+    <string name="settings_theme_system">Systemowy</string>
+    <string name="settings_theme_light">Jasny</string>
+    <string name="settings_theme_dark">Ciemny</string>
+    <string name="settings_dynamic_color">Kolory dynamiczne (Material You)</string>
+    <string name="settings_reminders">Przypomnienia o powtórkach</string>
+
+    <string name="settings_section_data">Dane</string>
+    <string name="settings_wipe_button">Usuń wszystkie dane</string>
+    <string name="settings_wipe_dialog_title">Usunąć wszystkie dane?</string>
+    <string name="settings_wipe_dialog_message">Tej operacji nie można cofnąć. Wszystkie postępy, rozmowy, słówka i ustawienia zostaną trwale usunięte.</string>
+    <string name="settings_wipe_confirm">Usuń</string>
+    <string name="settings_wipe_cancel">Anuluj</string>
+</resources>

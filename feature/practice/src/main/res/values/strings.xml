@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="practice_hub_title">Ćwicz</string>
+    <string name="practice_tile_exercises">Ćwiczenia</string>
+    <string name="practice_tile_exercises_description">Powtarzaj zadania z Twoich błędów</string>
+    <string name="practice_tile_vocabulary">Słownictwo</string>
+    <string name="practice_tile_vocabulary_description">Fiszki i nowe słówka</string>
+    <string name="practice_tile_pronunciation">Wymowa</string>
+    <string name="practice_tile_pronunciation_description">Trenuj trudne zwroty na głos</string>
+    <string name="practice_tile_notes">Notatki głosowe</string>
+    <string name="practice_tile_notes_description">Nagrywaj i odsłuchuj swoje wypowiedzi</string>
+    <string name="practice_due_badge">%1$d do powtórki</string>
+
+    <string name="exercises_title">Ćwiczenia</string>
+    <string name="exercises_back">Wstecz</string>
+    <string name="exercises_empty_title">Brak ćwiczeń</string>
+    <string name="exercises_empty_description">Brak ćwiczeń — porozmawiaj z tutorem, aby wygenerować ćwiczenia z Twoich błędów</string>
+    <string name="exercises_progress">Ćwiczenie %1$d z %2$d</string>
+    <string name="exercises_answer_label">Twoja odpowiedź</string>
+    <string name="exercises_answer_placeholder">Wpisz odpowiedź…</string>
+    <string name="exercises_submit">Sprawdź</string>
+    <string name="exercises_next">Dalej</string>
+    <string name="exercises_correct">Dobrze!</string>
+    <string name="exercises_incorrect">Niestety nie</string>
+    <string name="exercises_correct_answer">Poprawna odpowiedź: %1$s</string>
+    <string name="exercises_speaking_hint">Powiedz zdanie na głos, a na razie wpisz je poniżej — sprawdzanie głosem już wkrótce.</string>
+    <string name="exercises_summary_title">Podsumowanie sesji</string>
+    <string name="exercises_summary_score">%1$d/%2$d poprawnych</string>
+    <string name="exercises_finish">Zakończ</string>
+
+    <string name="vocabulary_title">Słownictwo</string>
+    <string name="vocabulary_due_header">Masz %1$d słówek do powtórki</string>
+    <string name="vocabulary_review_now">Powtórz teraz</string>
+    <string name="vocabulary_empty_title">Brak słówek</string>
+    <string name="vocabulary_empty_description">Dodaj pierwsze słówko albo porozmawiaj z tutorem — nowe słówka trafią tutaj.</string>
+    <string name="vocabulary_add">Dodaj słówko</string>
+    <string name="vocabulary_add_word">Słowo po angielsku</string>
+    <string name="vocabulary_add_translation">Tłumaczenie</string>
+    <string name="vocabulary_add_example">Przykład (opcjonalnie)</string>
+    <string name="vocabulary_add_save">Zapisz</string>
+    <string name="vocabulary_add_cancel">Anuluj</string>
+    <string name="vocabulary_status_new">Nowe</string>
+    <string name="vocabulary_status_learning">W nauce</string>
+    <string name="vocabulary_status_mastered">Opanowane</string>
+
+    <string name="review_title">Powtórka słówek</string>
+    <string name="review_back">Wstecz</string>
+    <string name="review_progress">Fiszka %1$d z %2$d</string>
+    <string name="review_tap_to_flip">Dotknij, aby zobaczyć tłumaczenie</string>
+    <string name="review_grade_again">Jeszcze raz</string>
+    <string name="review_grade_hard">Trudne</string>
+    <string name="review_grade_good">Dobre</string>
+    <string name="review_grade_easy">Łatwe</string>
+    <string name="review_empty_title">Nic do powtórki</string>
+    <string name="review_empty_description">Wszystkie słówka są powtórzone. Wróć później!</string>
+    <string name="review_summary_title">Sesja zakończona</string>
+    <string name="review_summary_count">Powtórzono %1$d słówek</string>
+    <string name="review_finish">Zakończ</string>
+
+    <string name="pronunciation_title">Wymowa</string>
+    <string name="pronunciation_instruction">Powiedz na głos:</string>
+    <string name="pronunciation_listen">Posłuchaj</string>
+    <string name="pronunciation_next_phrase">Następna fraza</string>
+    <string name="pronunciation_hint_idle">Dotknij mikrofonu i przeczytaj frazę</string>
+    <string name="pronunciation_hint_listening">Słucham… dotknij, by zakończyć</string>
+    <string name="pronunciation_hint_evaluating">Oceniam Twoją wymowę…</string>
+    <string name="pronunciation_score">%1$d/100</string>
+    <string name="pronunciation_heard">Usłyszałem: %1$s</string>
+    <string name="pronunciation_great">Świetna wymowa!</string>
+    <string name="pronunciation_keep_trying">Spróbuj jeszcze raz — posłuchaj wzoru i powtórz.</string>
+    <string name="pronunciation_history_header">Ostatnie próby</string>
+    <string name="pronunciation_history_empty">Jeszcze żadnej próby — zacznij od pierwszej frazy!</string>
+
+    <string name="notes_title">Notatki głosowe</string>
+    <string name="notes_record">Nagraj notatkę</string>
+    <string name="notes_stop">Zatrzymaj nagrywanie</string>
+    <string name="notes_recording_time">Nagrywanie… %1$s</string>
+    <string name="notes_empty_title">Brak notatek</string>
+    <string name="notes_empty_description">Nagraj swoją wypowiedź po angielsku i odsłuchaj ją później, aby śledzić postępy.</string>
+    <string name="notes_save_title">Zapisz notatkę</string>
+    <string name="notes_save_label">Tytuł notatki</string>
+    <string name="notes_save_placeholder">np. Opowiadanie o pracy</string>
+    <string name="notes_save_confirm">Zapisz</string>
+    <string name="notes_save_discard">Odrzuć</string>
+    <string name="notes_play">Odtwórz</string>
+    <string name="notes_stop_playback">Zatrzymaj</string>
+    <string name="notes_delete">Usuń</string>
+    <string name="notes_delete_title">Usunąć notatkę?</string>
+    <string name="notes_delete_message">Notatka „%1$s” zostanie trwale usunięta razem z nagraniem.</string>
+    <string name="notes_delete_confirm">Usuń</string>
+    <string name="notes_delete_cancel">Anuluj</string>
+    <string name="notes_duration">%1$d:%2$02d</string>
+
+    <string name="practice_error_dismiss">OK</string>
+    <string name="error_network">Brak połączenia z internetem. Historia i powtórki działają offline.</string>
+    <string name="error_missing_api_key">Dodaj klucz API w ustawieniach, aby korzystać z funkcji AI.</string>
+    <string name="error_invalid_api_key">Klucz API został odrzucony. Sprawdź go w ustawieniach.</string>
+    <string name="error_rate_limited">Limit zapytań wyczerpany. Spróbuj za chwilę.</string>
+    <string name="error_ai_service">Usługa AI jest chwilowo niedostępna. Spróbuj ponownie.</string>
+    <string name="error_speech">Nie udało się rozpoznać mowy. Spróbuj jeszcze raz.</string>
+    <string name="error_tts">Syntezator mowy nie działa na tym urządzeniu.</string>
+    <string name="error_mic_permission">Ta funkcja wymaga dostępu do mikrofonu.</string>
+    <string name="error_storage">Błąd zapisu danych.</string>
+    <string name="error_unknown">Coś poszło nie tak. Spróbuj ponownie.</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="conversation_title">Rozmowa</string>
+    <string name="conversation_back">Wstecz</string>
+    <string name="conversation_end">Zakończ rozmowę</string>
+    <string name="conversation_pick_scenario">O czym chcesz dziś porozmawiać?</string>
+
+    <string name="scenario_free_talk">Swobodna rozmowa</string>
+    <string name="scenario_small_talk">Small talk</string>
+    <string name="scenario_job_interview">Rozmowa o pracę</string>
+    <string name="scenario_business_meeting">Spotkanie biznesowe</string>
+    <string name="scenario_travel">Podróże</string>
+    <string name="scenario_restaurant">Restauracja</string>
+    <string name="scenario_shopping">Zakupy</string>
+    <string name="scenario_health">U lekarza</string>
+
+    <string name="conversation_hint_idle">Dotknij i mów</string>
+    <string name="conversation_hint_listening">Słucham… dotknij, by zakończyć</string>
+    <string name="conversation_hint_processing">Tutor się zastanawia…</string>
+    <string name="conversation_hint_speaking">Tutor mówi — dotknij, by przerwać</string>
+
+    <string name="conversation_end_title">Zakończyć rozmowę?</string>
+    <string name="conversation_end_message">Po zakończeniu przeanalizuję Twoje wypowiedzi: błędy, nowe słówka i wskazówki.</string>
+    <string name="conversation_end_confirm">Zakończ i analizuj</string>
+    <string name="conversation_end_cancel">Wróć do rozmowy</string>
+    <string name="conversation_error_dismiss">OK</string>
+
+    <string name="error_network">Brak połączenia z internetem. Historia i powtórki działają offline.</string>
+    <string name="error_missing_api_key">Dodaj klucz API w ustawieniach, aby rozmawiać z tutorem.</string>
+    <string name="error_invalid_api_key">Klucz API został odrzucony. Sprawdź go w ustawieniach.</string>
+    <string name="error_rate_limited">Limit zapytań wyczerpany. Spróbuj za chwilę.</string>
+    <string name="error_ai_service">Usługa AI jest chwilowo niedostępna. Spróbuj ponownie.</string>
+    <string name="error_speech">Nie udało się rozpoznać mowy. Spróbuj jeszcze raz.</string>
+    <string name="error_tts">Syntezator mowy nie działa na tym urządzeniu.</string>
+    <string name="error_mic_permission">Rozmowa głosowa wymaga dostępu do mikrofonu.</string>
+    <string name="error_storage">Błąd zapisu danych.</string>
+    <string name="error_unknown">Coś poszło nie tak. Spróbuj ponownie.</string>
+
+    <string name="conversation_list_title">Rozmowy</string>
+    <string name="conversation_list_new">Nowa rozmowa</string>
+    <string name="conversation_list_empty_title">Jeszcze żadnej rozmowy</string>
+    <string name="conversation_list_empty_description">Rozpocznij pierwszą rozmowę z tutorem — wystarczy kilka minut dziennie.</string>
+    <string name="conversation_list_meta">%1$s · %2$d min</string>
+
+    <string name="summary_title">Analiza rozmowy</string>
+    <string name="summary_analyzing">Analizuję Twoją rozmowę…</string>
+    <string name="summary_retry">Ponów</string>
+    <string name="summary_feedback_header">Feedback tutora</string>
+    <string name="summary_errors_header">Do poprawy (%1$d)</string>
+    <string name="summary_no_errors">Brak błędów wartych uwagi — świetna rozmowa!</string>
+    <string name="summary_go_practice">Ćwicz swoje błędy</string>
+
+    <string name="category_grammar">GRAMATYKA</string>
+    <string name="category_vocabulary">SŁOWNICTWO</string>
+    <string name="category_pronunciation">WYMOWA</string>
+    <string name="category_fluency">PŁYNNOŚĆ</string>
+</resources>
