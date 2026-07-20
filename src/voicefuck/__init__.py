@@ -4,8 +4,8 @@ Drives a *real* Google Chrome Beta instance over the Chrome DevTools Protocol
 (CDP) via the ``agent-browser`` CLI, rather than launching an automation-flagged
 Playwright browser that sites can detect.
 
-The design rules this package enforces are documented in
-``.claude/skills/real-browser/SKILL.md``. The load-bearing invariants:
+The design rules this package enforces are documented in ``CLAUDE.md``. The
+load-bearing invariants:
 
 * Never launch Chrome through ``agent-browser`` — start it yourself with
   ``--remote-debugging-port`` and a dedicated ``--user-data-dir``.

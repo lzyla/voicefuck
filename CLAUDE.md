@@ -10,15 +10,13 @@ sessions are indistinguishable from a human user. This matters for sites that
 actively detect and block automation (LinkedIn, job boards, etc.) and for
 running many parallel browser sessions that share one real login state.
 
-The connection model, gotchas, and known bugs live in the packaged skill under
-[`.claude/skills/real-browser/SKILL.md`](.claude/skills/real-browser/SKILL.md).
-**Read that skill in full before doing any browser work** — it is the source of
-truth for the exact commands. This file summarizes conventions and points at the
-Python package that encodes them.
+The connection model, gotchas, and known bugs are documented below (see
+"The real-browser model" and "Reliability conventions") — read those before
+doing any browser work; they are the source of truth for the exact commands.
 
 The Python package `voicefuck` (under `src/`) is a thin, timeout-guarded wrapper
-over the `agent-browser` CLI + Chrome's CDP HTTP endpoint. It enforces the
-skill's invariants in code (always `--cdp --session`, unique session ids, hard
+over the `agent-browser` CLI + Chrome's CDP HTTP endpoint. It enforces these
+invariants in code (always `--cdp --session`, unique session ids, hard
 timeouts, background-tab opening). See [`README.md`](README.md) for usage.
 
 ## Repository layout
@@ -35,13 +33,9 @@ timeouts, background-tab opening). See [`README.md`](README.md) for usage.
 │       ├── session.py                 # BrowserSession: named tab over --cdp --session
 │       ├── parallel.py                # batch_open_tabs, run_parallel
 │       └── cli.py                     # `voicefuck` CLI (status/launch/open/check)
-├── tests/                             # pytest; no running Chrome required (stubbed)
-│   ├── test_session.py
-│   └── test_cdp.py
-└── .claude/
-    └── skills/
-        └── real-browser/
-            └── SKILL.md               # The real-browser automation skill
+└── tests/                             # pytest; no running Chrome required (stubbed)
+    ├── test_session.py
+    └── test_cdp.py
 ```
 
 ## Development
@@ -114,7 +108,6 @@ Verify you're clean with `agent-browser eval 'navigator.webdriver'` → expect
 
 - This may run in an ephemeral remote container (fresh clone per session).
   Anything worth keeping must be committed and pushed.
-- The real-browser skill assumes **macOS Chrome Beta paths**
-  (`/Applications/Google Chrome Beta.app`, `osascript`). On other platforms the
-  launch/quit commands need adapting; the CDP model (`--cdp 9222 --session`)
-  is platform-independent.
+- The launch/quit commands assume **macOS Chrome Beta paths**
+  (`/Applications/Google Chrome Beta.app`, `osascript`). On other platforms they
+  need adapting; the CDP model (`--cdp 9222 --session`) is platform-independent.

@@ -7,9 +7,9 @@ so automated sessions are indistinguishable from a human user. This is what lets
 it work against sites that actively detect and block automation (LinkedIn, job
 boards, …) and run many parallel sessions that share one real login.
 
-The connection model, gotchas, and known bugs live in
-[`.claude/skills/real-browser/SKILL.md`](.claude/skills/real-browser/SKILL.md).
-Read it before doing browser work.
+The connection model, gotchas, and known bugs are documented in
+[`CLAUDE.md`](CLAUDE.md) ("The real-browser model" and "Reliability
+conventions"). Read those before doing browser work.
 
 ## Install
 
@@ -78,7 +78,8 @@ voicefuck check                      # report navigator.webdriver on a fresh ses
 
 ## Design invariants
 
-These are enforced in code and must not be broken (see the skill for why):
+These are enforced in code and must not be broken (see [`CLAUDE.md`](CLAUDE.md)
+for why):
 
 - **Never launch Chrome via `agent-browser`** — start the real binary yourself.
 - **Every command carries `--cdp <port> --session <id>`** (`BrowserSession` does
@@ -97,7 +98,7 @@ pytest            # unit tests; no running Chrome required (subprocess/network s
 
 ## Platform note
 
-The `agent-browser` skill and the default launch path assume **macOS Chrome
-Beta**. The CDP model (`--cdp <port> --session`) is platform-independent; on
+The default launch path assumes **macOS Chrome Beta**. The CDP model
+(`--cdp <port> --session`) is platform-independent; on
 other platforms pass `chrome_binary=...` to `launch_chrome()` and adapt the
 launch/quit commands.
