@@ -1,0 +1,97 @@
+# CLAUDE.md
+
+Guidance for AI assistants (Claude Code and others) working in this repository.
+
+## What this repo is
+
+This is a **browser-automation project**. Its purpose is to drive a *real* Google
+Chrome Beta instance — not a Playwright-managed browser — so that automated
+sessions are indistinguishable from a human user. This matters for sites that
+actively detect and block automation (LinkedIn, job boards, etc.) and for
+running many parallel browser sessions that share one real login state.
+
+The core capability lives in the packaged skill under
+[`.claude/skills/real-browser/SKILL.md`](.claude/skills/real-browser/SKILL.md).
+**Read that skill in full before doing any browser work** — it is the source of
+truth for the connection model, gotchas, and known bugs. This file summarizes
+conventions; the skill has the exact commands.
+
+> Note: the repository is at an early stage — the skill is the only substantive
+> asset so far. As real source code, tests, and build tooling are added, update
+> the sections below to match.
+
+## Repository layout
+
+```
+.
+├── CLAUDE.md                          # This file
+└── .claude/
+    └── skills/
+        └── real-browser/
+            └── SKILL.md               # The real-browser automation skill
+```
+
+## The real-browser model (essentials)
+
+The whole approach hinges on attaching to a real Chrome via the Chrome DevTools
+Protocol (CDP) instead of launching an automation-flagged browser. Keep these
+invariants — most bugs come from breaking one of them:
+
+- **Never launch Chrome with `agent-browser open` / `--headed`.** That produces a
+  Playwright-controlled browser that sites detect. Launch Chrome Beta yourself
+  with `--remote-debugging-port=9222` and a dedicated `--user-data-dir`.
+- **Attach with `--cdp 9222 --session <name>` on *every* `agent-browser`
+  command.** `--cdp` attaches to the running Chrome; `--session` isolates a named
+  tab. There is no separate `connect` step.
+- **Do not use `agent-browser --session <name> connect 9222`.** The `connect`
+  subcommand opens a blank `about:blank` tab instead of attaching (known
+  Rust-daemon bug, verified v0.22.3).
+- **Generate a unique 6-char session id per agent run.** Never reuse `main` or a
+  hardcoded name — two agents on the same session name clobber each other's tab
+  silently.
+- **`--user-data-dir` is required** for remote debugging to enable. The
+  persistent profile at `~/.chrome-beta-profile` keeps cookies/logins across
+  restarts, which is how parallel sessions share one login.
+- **Never quit/kill/restart Chrome unless the user explicitly asks.** The user
+  may be driving the same browser manually. If Chrome needs the debug port and
+  was started without it, ask the user to relaunch — don't kill it yourself.
+
+Verify you're clean with `agent-browser eval 'navigator.webdriver'` → expect
+`false`/`undefined`.
+
+## Reliability conventions
+
+- **Hard-timeout every browser command** (`timeout 15 agent-browser …`). The main
+  failure mode is an unbounded wait; on timeout, snapshot last-known state and
+  decide retry vs. skip rather than tweaking config.
+- **Checkpoint multi-step flows.** Break long flows (e.g. form fill → upload →
+  submit) into discrete steps and snapshot after each, so you can resume from the
+  failed step instead of restarting.
+- **Batch tab opening.** Opening tabs steals OS focus. Prefer CDP background tabs
+  (`curl "http://localhost:9222/json/new?<url>"`) for zero focus steal; otherwise
+  open all tabs in one tight loop before doing any work. Never interleave
+  open→scrape→open→scrape.
+- **After upgrading `agent-browser`, kill stale daemons first**
+  (`pkill -f agent-browser`, clear sockets, reinstall). A new CLI talking to an
+  old daemon fails silently (blank pages, missing cookies) with no version
+  warning.
+
+## Working in this repo
+
+- **Branch:** develop on the branch assigned for the session
+  (`claude/session-*`); create it from the latest `main` if needed. Do not push
+  to `main` or any other branch without explicit permission.
+- **Commits:** clear, descriptive messages; commit and push only when the work is
+  complete or the user asks.
+- **Pull requests:** do not open a PR unless the user explicitly asks for one.
+- **Temporary files:** write scratch files to a temp/scratch directory, not into
+  the repo tree.
+
+## Environment notes
+
+- This may run in an ephemeral remote container (fresh clone per session).
+  Anything worth keeping must be committed and pushed.
+- The real-browser skill assumes **macOS Chrome Beta paths**
+  (`/Applications/Google Chrome Beta.app`, `osascript`). On other platforms the
+  launch/quit commands need adapting; the CDP model (`--cdp 9222 --session`)
+  is platform-independent.
