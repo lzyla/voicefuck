@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "voicefuck"
+version = "0.1.0"
+description = "Drive a real Chrome Beta via CDP for detection-resistant, parallel browser automation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "media30" }]
+keywords = ["browser-automation", "chrome", "cdp", "agent-browser"]
+
+# Runtime is intentionally dependency-free: it shells out to the `agent-browser`
+# CLI and talks to Chrome's CDP HTTP endpoint using only the standard library.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+voicefuck = "voicefuck.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/voicefuck"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

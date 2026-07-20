@@ -10,26 +10,49 @@ sessions are indistinguishable from a human user. This matters for sites that
 actively detect and block automation (LinkedIn, job boards, etc.) and for
 running many parallel browser sessions that share one real login state.
 
-The core capability lives in the packaged skill under
+The connection model, gotchas, and known bugs live in the packaged skill under
 [`.claude/skills/real-browser/SKILL.md`](.claude/skills/real-browser/SKILL.md).
 **Read that skill in full before doing any browser work** — it is the source of
-truth for the connection model, gotchas, and known bugs. This file summarizes
-conventions; the skill has the exact commands.
+truth for the exact commands. This file summarizes conventions and points at the
+Python package that encodes them.
 
-> Note: the repository is at an early stage — the skill is the only substantive
-> asset so far. As real source code, tests, and build tooling are added, update
-> the sections below to match.
+The Python package `voicefuck` (under `src/`) is a thin, timeout-guarded wrapper
+over the `agent-browser` CLI + Chrome's CDP HTTP endpoint. It enforces the
+skill's invariants in code (always `--cdp --session`, unique session ids, hard
+timeouts, background-tab opening). See [`README.md`](README.md) for usage.
 
 ## Repository layout
 
 ```
 .
 ├── CLAUDE.md                          # This file
+├── README.md                          # User-facing usage + quick start
+├── pyproject.toml                     # Package metadata; runtime is dependency-free
+├── src/
+│   └── voicefuck/
+│       ├── __init__.py                # Public API re-exports
+│       ├── cdp.py                     # CDP HTTP helpers: launch, version, background tabs
+│       ├── session.py                 # BrowserSession: named tab over --cdp --session
+│       ├── parallel.py                # batch_open_tabs, run_parallel
+│       └── cli.py                     # `voicefuck` CLI (status/launch/open/check)
+├── tests/                             # pytest; no running Chrome required (stubbed)
+│   ├── test_session.py
+│   └── test_cdp.py
 └── .claude/
     └── skills/
         └── real-browser/
             └── SKILL.md               # The real-browser automation skill
 ```
+
+## Development
+
+- **Install:** `pip install -e ".[dev]"` (Python 3.10+).
+- **Test:** `pytest` — unit tests stub `subprocess`/network, so no running Chrome
+  is needed. Keep it that way: tests must not require a live browser.
+- **Runtime deps:** none. The package shells out to `agent-browser` and uses only
+  the standard library for CDP HTTP. Don't add runtime dependencies without cause.
+- **Public API:** re-exported from `voicefuck/__init__.py`; keep it in sync when
+  adding modules.
 
 ## The real-browser model (essentials)
 
