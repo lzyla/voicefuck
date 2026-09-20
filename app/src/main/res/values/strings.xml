@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AI English Coach</string>
+
+    <string name="nav_home">Start</string>
+    <string name="nav_conversations">Rozmowy</string>
+    <string name="nav_practice">Nauka</string>
+    <string name="nav_statistics">Statystyki</string>
+
+    <string name="notification_channel_revisions">Przypomnienia o powtórkach</string>
+    <string name="notification_revisions_title">Czas na powtórkę!</string>
+    <string name="notification_revisions_text">Masz %1$d elementów do powtórzenia. Kilka minut wystarczy.</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="statistics_title">Statystyki</string>
+    <string name="statistics_streak">dni z rzędu</string>
+    <string name="statistics_total_minutes">łączne minuty rozmów</string>
+    <string name="statistics_words_learned">poznane słówka</string>
+    <string name="statistics_exercises_done">wykonane ćwiczenia</string>
+    <string name="statistics_accuracy">skuteczność</string>
+    <string name="statistics_pronunciation">średnia wymowa</string>
+    <string name="statistics_percent_value">%1$d%%</string>
+    <string name="statistics_chart_title">Ostatnie 30 dni (minuty rozmów)</string>
+    <string name="statistics_empty_title">Brak aktywności</string>
+    <string name="statistics_empty_description">Rozpocznij pierwszą rozmowę, a Twoje statystyki pojawią się tutaj.</string>
+</resources>

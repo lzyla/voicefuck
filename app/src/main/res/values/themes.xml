@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash theme (androidx.core splashscreen); post-splash UI is Compose. -->
+    <style name="Theme.AIEnglishCoach.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="postSplashScreenTheme">@style/Theme.AIEnglishCoach</item>
+    </style>
+
+    <style name="Theme.AIEnglishCoach" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

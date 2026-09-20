@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Cloud auto-backup (Android 11 and lower path). The encrypted API key file
+     and its Keystore-bound master key must never leave the device. -->
+<full-backup-content>
+    <exclude domain="sharedpref" path="secure_credentials.xml" />
+</full-backup-content>
